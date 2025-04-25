@@ -1,11 +1,18 @@
 import "./LoginPage.scss";
+import loginImage from "../../assets/login-image.svg";
+import logo from "../../assets/logo.svg";
 
 const LoginPage = () => {
   return (
     <div className="login-container">
       <div className="left-section">
         <div className="login-illustration">
-          <h1>Login illustration</h1>
+          <div style={{ paddingBottom: '17%'}}>
+            <img src={logo} alt="logo"/>
+          </div>
+          <div style={{ width: '100%', maxWidth: '100%', marginBottom: '17%' }}>
+            <img src={loginImage} alt="login-image" style={{ maxWidth: '100%', height: 'auto' }}  />
+          </div>
         </div>
       </div>
 

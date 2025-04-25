@@ -7,13 +7,25 @@
 }
 
 .left-section {
-    background-color: whitesmoke;
     flex: 1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-illustration {
+    //border: 1px solid red;
+    width: 80%;
+}
+
+img {
+    object-fit: contain;
 }
 
 .right-section {
     flex: 1;
-    background-color: white;
+    background-color: rgb(252, 252, 252);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +45,7 @@
     color: rgba(84, 95, 125, 1);
     font-size: 14px;
     padding: 2% 0 2% 3%;
+    background-color: rgb(252, 252, 252);
 
     &:focus {
         box-shadow: none;
@@ -43,6 +56,7 @@
         color: rgba(84, 95, 125, 1);
         font-size: 14px;
         padding: 2% 0 2% 3%;
+        background-color: rgb(252, 252, 252);
     }
 
     &::placeholder {
