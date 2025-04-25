@@ -1,11 +1,12 @@
-
+import LoginPage from "./features/auth/LoginPage"
+import './App.scss'
 
 function App() {
 
   return (
-    <>
-     <h1>Hello, world</h1>
-    </>
+    <div className="app-container">
+     <LoginPage />
+    </div>
   )
 }
 
