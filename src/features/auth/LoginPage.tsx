@@ -1,17 +1,24 @@
 import "./LoginPage.scss";
 import loginImage from "../../assets/login-image.svg";
 import logo from "../../assets/logo.svg";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="login-container">
       <div className="left-section">
         <div className="login-illustration">
-          <div style={{ paddingBottom: '17%'}}>
-            <img src={logo} alt="logo"/>
+          <div style={{ paddingBottom: "17%" }}>
+            <img src={logo} alt="logo" />
           </div>
-          <div style={{ width: '100%', maxWidth: '100%', marginBottom: '17%' }}>
-            <img src={loginImage} alt="login-image" style={{ maxWidth: '100%', height: 'auto' }}  />
+          <div style={{ width: "100%", maxWidth: "100%", marginBottom: "17%" }}>
+            <img
+              src={loginImage}
+              alt="login-image"
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
           </div>
         </div>
       </div>
@@ -35,13 +42,19 @@ const LoginPage = () => {
             </div>
 
             <div className="mb-4">
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                name="password"
-                placeholder="Password"
-              />
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="form-control"
+                />
+                <span
+                  className="toggle-show"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "HIDE" : "SHOW"}
+                </span>
+              </div>
             </div>
 
             <h6>FORGOT PASSWORD?</h6>
