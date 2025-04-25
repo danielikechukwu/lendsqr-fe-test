@@ -2,9 +2,30 @@ import "./LoginPage.scss";
 import loginImage from "../../assets/login-image.svg";
 import logo from "../../assets/logo.svg";
 import { useState } from "react";
+import { Login } from "./types";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState<Login>({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
 
   return (
     <div className="login-container">
@@ -30,7 +51,19 @@ const LoginPage = () => {
             <p>Enter details to login.</p>
           </div>
 
-          <form>
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                placeholder="First name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+
             <div className="mb-3">
               <input
                 type="email"
@@ -38,6 +71,8 @@ const LoginPage = () => {
                 id="email"
                 name="email"
                 placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
 
@@ -47,6 +82,10 @@ const LoginPage = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   className="form-control"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                 />
                 <span
                   className="toggle-show"
