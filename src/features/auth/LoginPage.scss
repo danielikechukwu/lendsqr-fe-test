@@ -1,0 +1,30 @@
+.login-container {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.login-illustration {
+    //border: 1px solid green;
+    background-color: whitesmoke;
+    flex: 1;
+}
+
+.left-container {
+
+    flex: 1;
+    background-color: white;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    
+}
