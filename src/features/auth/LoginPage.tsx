@@ -1,17 +1,34 @@
 import "./LoginPage.scss";
 import loginImage from "../../assets/login-image.svg";
 import logo from "../../assets/logo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Login } from "./types";
 
 const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [formData, setFormData] = useState<Login>({
     name: "",
     email: "",
     password: "",
   });
+
+  const [isValid, setIsValid] = useState<boolean>(false);
+
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return (
+      emailRegex.test(formData.email) &&
+      formData.password.trim() !== "" &&
+      formData.name.trim() !== ""
+    );
+  };
+
+  //Perform side effect, whenever formData change update isValid
+  useEffect(() => {
+    setIsValid(validateForm());
+  }, [formData]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -24,7 +41,10 @@ const LoginPage = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
+    if (isValid) {
+      console.log("Form submitted:", formData);
+    }
   };
 
   return (
@@ -98,7 +118,17 @@ const LoginPage = () => {
 
             <h6>FORGOT PASSWORD?</h6>
 
-            <button type="submit" className="btn btn-primary w-100">
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              style={{
+                backgroundColor: isValid
+                  ? "rgb(32, 170, 170)"
+                  : "rgb(116, 202, 202)",
+                color: "#fff",
+                cursor: isValid ? "pointer" : "not-allowed",
+              }}
+            >
               LOG IN
             </button>
           </form>

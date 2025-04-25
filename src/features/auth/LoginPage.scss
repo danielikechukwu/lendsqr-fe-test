@@ -121,6 +121,10 @@ img {
         outline: none !important;
         transform: none !important;
     }
+
+    &:disabled {
+        background: rgb(116, 202, 202);
+    }
 }
 
 .login-form-text {
@@ -144,7 +148,7 @@ p {
 
 h6 {
     font-family: "Poppins", sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 400;
     margin-bottom: 5%;
     color: rgba(57, 205, 204, 1);
