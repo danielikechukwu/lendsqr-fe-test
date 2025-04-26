@@ -1,11 +1,12 @@
 import LoginPage from "./features/auth/LoginPage"
 import './App.scss'
+import AppRoutes from "./routes/AppRoutes"
 
 function App() {
 
   return (
     <div className="app-container">
-     <LoginPage />
+     <AppRoutes />
     </div>
   )
 }

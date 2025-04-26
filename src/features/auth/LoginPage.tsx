@@ -3,6 +3,7 @@ import loginImage from "../../assets/login-image.svg";
 import logo from "../../assets/logo.svg";
 import { useEffect, useState } from "react";
 import { Login } from "./types";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -16,6 +17,8 @@ const LoginPage = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
 
   const [loading, setIsLoading] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -46,13 +49,13 @@ const LoginPage = () => {
     if (isValid) {
       setIsLoading(true);
 
-      console.log("Form submitted:", formData);
       //Convert object to JSON string, and store in localStorage.
       localStorage.setItem("user", JSON.stringify(formData));
 
       //Setting login details to localStorage.
       setTimeout(() => {
         setIsLoading(false);
+        navigate("/dashboard");
       }, 3000);
     }
   };
