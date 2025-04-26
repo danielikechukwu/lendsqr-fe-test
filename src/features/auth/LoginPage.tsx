@@ -1,4 +1,4 @@
-import "./LoginPage.scss";
+import styles from "./LoginPage.module.scss";
 import loginImage from "../../assets/login-image.svg";
 import logo from "../../assets/logo.svg";
 import { useEffect, useState } from "react";
@@ -61,9 +61,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="left-section">
-        <div className="login-illustration">
+    <div className={styles.loginContainer}>
+      <div className={`${styles.leftSection}`}>
+        <div className={`${styles.loginIllustration}`}>
           <div
             style={{
               paddingBottom: "17%",
@@ -96,10 +96,12 @@ const LoginPage = () => {
         </div>
       </div>
 
-      <div className="right-section">
-        <div className="login-form-container">
+      <div className={`${styles.rightSection}`}>
+
+        <div className={`${styles.loginFormContainer}`}>
+
           {/* Login Logo image */}
-          <div className="login-form-logo">
+          <div className={`${styles.loginFormLogo}`}>
             <img
               src={logo}
               alt="logo"
@@ -110,8 +112,9 @@ const LoginPage = () => {
           </div>
 
           {/* Login form */}
-          <div className="login-form">
-            <div className="login-form-text">
+          <div className={`${styles.loginForm}`}>
+            
+            <div className={`${styles.loginFormText}`}>
               <h2>Welcome!</h2>
               <p>Enter details to login.</p>
             </div>
@@ -120,7 +123,7 @@ const LoginPage = () => {
               <div className="mb-3">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${styles.formControl}`}
                   id="name"
                   name="name"
                   placeholder="First name"
@@ -132,7 +135,7 @@ const LoginPage = () => {
               <div className="mb-3">
                 <input
                   type="email"
-                  className="form-control"
+                  className={`form-control ${styles.formControl}`}
                   id="email"
                   name="email"
                   placeholder="Email"
@@ -142,18 +145,18 @@ const LoginPage = () => {
               </div>
 
               <div className="mb-4">
-                <div className="password-wrapper">
+                <div className={`${styles.passwordWrapper}`}>
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className="form-control"
+                    className={`form-control ${styles.formControl}`}
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                   />
                   <span
-                    className="toggle-show"
+                    className={`${styles.toggleShow}`}
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? "HIDE" : "SHOW"}
@@ -167,14 +170,16 @@ const LoginPage = () => {
                 type="submit"
                 disabled={loading}
                 className={`btn w-100 ${
-                  isValid ? "valid-btn-primary" : "invalid-btn-primary"
+                  isValid
+                    ? `${styles.validBtnPrimary}`
+                    : `${styles.invalidBtnPrimary}`
                 }`}
               >
                 LOG IN
                 {/* tiny spinner for loading */}
                 {loading && (
                   <span
-                    className="spinner-border spinner-border-sm"
+                    className={`spinner-border spinner-border-sm ${styles.spinnerBorder}`}
                     role="status"
                     aria-hidden="true"
                   ></span>
