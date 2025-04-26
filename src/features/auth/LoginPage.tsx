@@ -120,14 +120,9 @@ const LoginPage = () => {
 
             <button
               type="submit"
-              className="btn btn-primary w-100"
-              style={{
-                backgroundColor: isValid
-                  ? "rgb(32, 170, 170)"
-                  : "rgb(116, 202, 202)",
-                color: "#fff",
-                cursor: isValid ? "pointer" : "not-allowed",
-              }}
+              className={`btn w-100 ${
+                isValid ? "valid-btn-primary" : "invalid-btn-primary"
+              }`}
             >
               LOG IN
             </button>
