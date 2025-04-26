@@ -4,6 +4,9 @@ import Navbar from "./Navbar";
 import styles from './MainLayout.module.scss';
 
 const MainLayout = () => {
+
+  
+
   return (
     <div className={`${styles.layoutContainer}`}>
       <nav>

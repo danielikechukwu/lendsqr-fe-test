@@ -6,6 +6,9 @@ import styles from "./Navbar.module.scss";
 import dropdown from '../assets/icons/dropdown.svg'
 
 const Navbar = () => {
+
+    const userDetail = JSON.parse(localStorage.getItem('user')!);
+
   return (
     <div className={`${styles.navContainer}`}>
         
@@ -61,7 +64,7 @@ const Navbar = () => {
               height="32px"
               style={{ objectFit: "contain", borderRadius: "50%" }}
             />
-            <h6>Adedeji</h6>
+            <h6>{userDetail ? userDetail.name.toUpperCase() : 'Adedeji'}</h6>
             <img src={dropdown} width='8px' height='8px' style={{cursor: 'pointer'}} />
           </div>
 
