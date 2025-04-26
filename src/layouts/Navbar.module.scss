@@ -5,13 +5,14 @@
     padding: 1% 2% 1% 2%;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    
+    height: 60px;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+
 }
 
-.logoContainer {
-    
-}
+.logoContainer {}
 
 .activities {
     display: flex;
@@ -48,6 +49,7 @@
 
     .customInput {
         border: 2px solid rgba(84, 95, 125, 0.15);
+        border-radius: 8px;
         font-family: "Poppins", sans-serif;
         font-weight: 400;
         font-style: normal;
@@ -88,6 +90,7 @@
 .btnPrimary {
     background: rgba(57, 205, 204, 1);
     border: none;
+    border-radius: 8px;
     height: 32px;
     display: flex;
     align-items: center;
