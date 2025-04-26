@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.login-container {
+.loginContainer {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-.left-section {
+.leftSection {
     flex: 1;
     background-color: white;
     display: flex;
     justify-content: center;
 
-    .login-illustration {
+    .loginIllustration {
         width: 90%;
         height: 80%;
         margin-top: 5%;
@@ -26,27 +26,38 @@ img {
     object-fit: contain;
 }
 
-.right-section {
+.rightSection {
     flex: 1;
     background-color: rgb(252, 252, 252);
     display: flex;
     justify-content: center;
 
-    .login-form-container {
+    .loginFormContainer {
         width: 90%;
         height: 80%;
         margin-top: 5%;
         display: flex;
         justify-content: space-around;
         flex-direction: column;
+
+
+        h6 {
+            font-family: "Poppins", sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            margin-bottom: 5%;
+            color: rgba(57, 205, 204, 1);
+            letter-spacing: 0.09em;
+            cursor: pointer;
+        }
     }
 }
 
-.login-form-logo {
+.loginFormLogo {
     display: none;
 }
 
-.form-control {
+.formControl {
     border: 2px solid rgba(84, 95, 125, 0.15);
     font-family: "Poppins", sans-serif;
     font-weight: 300;
@@ -90,12 +101,12 @@ img {
     }
 }
 
-.password-wrapper {
+.passwordWrapper {
     position: relative;
     width: 100%;
     max-width: 100%;
 
-    .toggle-show {
+    .toggleShow {
         position: absolute;
         font-family: "Poppins", sans-serif;
         font-weight: 400;
@@ -109,7 +120,7 @@ img {
     }
 }
 
-.invalid-btn-primary {
+.invalidBtnPrimary {
     background: rgb(116, 202, 202);
     border: none;
     font-family: "Poppins", sans-serif;
@@ -142,7 +153,7 @@ img {
     }
 }
 
-.valid-btn-primary {
+.validBtnPrimary {
     background: rgba(57, 205, 204, 1);
     border: none;
     font-family: "Poppins", sans-serif;
@@ -173,61 +184,53 @@ img {
     }
 }
 
-.spinner-border {
+.spinnerBorder {
     margin-left: 3%;
     width: 13px;
     height: 13px;
+
+
 }
 
-.login-form-text {
+.loginFormText {
     margin-bottom: 5%;
-}
 
-h2 {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-size: xx-large;
-    font-style: normal;
-    color: rgba(33, 63, 125, 1);
-}
+    h2 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: xx-large;
+        font-style: normal;
+        color: rgba(33, 63, 125, 1);
+    }
 
-p {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    color: rgba(84, 95, 125, 1);
-}
-
-h6 {
-    font-family: "Poppins", sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    margin-bottom: 5%;
-    color: rgba(57, 205, 204, 1);
-    letter-spacing: 0.09em;
-    cursor: pointer;
+    p {
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        color: rgba(84, 95, 125, 1);
+    }
 }
 
 //Responsive styling
 
 @media (max-width: 767.98px) {
 
-    .left-section {
+    .leftSection {
         display: none;
     }
 
-    .right-section {
+    .rightSection {
         flex: 1;
         background-color: rgb(252, 252, 252);
         display: flex;
         justify-content: center;
 
-        .login-form-container {
+        .loginFormContainer {
             display: flex;
             flex-direction: column;
             width: 80%;
 
-            .login-form-logo {
+            .loginFormLogo {
                 display: block;
                 padding-bottom: 5%;
                 min-width: 300px;
@@ -240,7 +243,7 @@ h6 {
 
 @media (min-width: 992px) {
 
-    .login-form-container {
+    .loginFormContainer {
         width: 90%;
         height: 80%;
         margin-top: 5%;
@@ -249,7 +252,7 @@ h6 {
         flex-direction: column;
         align-items: center;
 
-        .login-form {
+        .loginForm {
             display: flex;
             flex-direction: column;
             width: 55%;

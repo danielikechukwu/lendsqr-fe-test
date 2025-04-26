@@ -1,0 +1,17 @@
+.layoutContainer {
+    border: 1px solid orange;
+    height: 100%;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+aside {
+    width: 15%;
+}
+
+main {
+    flex: 1;
+}
