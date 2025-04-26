@@ -1,16 +1,26 @@
-import { Outlet } from "react-router-dom"
-import Sidenav from "./SideNav"
+import { Outlet } from "react-router-dom";
+import Sidenav from "./SideNav";
+import Navbar from "./Navbar";
+import styles from './MainLayout.module.scss';
 
 const MainLayout = () => {
   return (
-    <div className="flex">
-    <Sidenav />
-    <main className="flex-1 p-4">
-      {/* <Outlet /> */}
-      <Outlet />
-    </main>
-  </div>
-  )
-}
+    <div className={`${styles.layoutContainer}`}>
+      <nav>
+        <Navbar />
+      </nav>
 
-export default MainLayout
+      <section>
+        <aside>
+          <Sidenav />
+        </aside>
+
+        <main>
+          <Outlet />
+        </main>
+      </section>
+    </div>
+  );
+};
+
+export default MainLayout;

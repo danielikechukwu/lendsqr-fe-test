@@ -1,17 +1,24 @@
 .layoutContainer {
-    border: 1px solid orange;
     height: 100%;
+    margin: 0;
+    padding: 0;
+
+    nav {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    section {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    aside {
+        width: 15%;
+    }
+    
+    main {
+        flex: 1;
+        background-color: rgb(245, 242, 242);
+    }
 }
 
-section {
-    display: flex;
-    flex-direction: row;
-}
-
-aside {
-    width: 15%;
-}
-
-main {
-    flex: 1;
-}

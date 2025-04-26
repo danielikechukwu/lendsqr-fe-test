@@ -1,6 +1,6 @@
 const Sidenav = () => {
   return (
-    <div>Sidenav</div>
+    <div style={{backgroundColor: 'white', border: '1px solid red'}}>Sidenav</div>
   )
 }
 

@@ -2,21 +2,22 @@
 
 .navContainer {
     background-color: white;
-    padding: 1%;
-    border: 1px solid green;
+    padding: 1% 2% 1% 2%;
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
 }
 
 .logoContainer {
-    border: 1px solid red;
+    
 }
 
 .activities {
-    border: 1px solid blue;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 180%;
+    gap: 20px;
 
     a {
         color: rgba(33, 63, 125, 1);
@@ -28,6 +29,8 @@
 
     .userDetail {
         display: flex;
+        align-items: center;
+        gap: 8px;
 
         h6 {
             font-family: "Poppins", sans-serif;
@@ -41,18 +44,17 @@
 }
 
 .searchContainer {
-    border: 1px solid blue;
     width: 30%;
 
     .customInput {
         border: 2px solid rgba(84, 95, 125, 0.15);
         font-family: "Poppins", sans-serif;
-        font-weight: 300;
+        font-weight: 400;
         font-style: normal;
         color: rgba(84, 95, 125, 1);
-        font-size: 0.875rem;
-        padding: 0.25rem 0rem 0.5rem 1rem;
-        background-color: rgb(252, 252, 252);
+        font-size: 12px;
+        padding: 0.25rem 0rem 0.25rem 1rem;
+        background-color: rgb(255, 255, 255);
         height: 32px;
 
         &:focus {
@@ -61,22 +63,23 @@
 
         &::placeholder {
             font-family: "Poppins", sans-serif;
-            font-weight: 300;
-            font-size: 0.875rem;
+            font-weight: 400;
+            font-size: 12px;
             color: rgba(84, 95, 125, 1);
+
         }
 
         &:-ms-input-placeholder {
             font-family: "Poppins", sans-serif;
-            font-weight: 300;
-            font-size: 0.875rem;
+            font-weight: 400;
+            font-size: 12px;
             color: rgba(84, 95, 125, 1);
         }
 
         &::-ms-input-placeholder {
             font-family: "Poppins", sans-serif;
-            font-weight: 300;
-            font-size: 0.875rem;
+            font-weight: 400;
+            font-size: 12px;
             color: rgba(84, 95, 125, 1);
         }
     }
