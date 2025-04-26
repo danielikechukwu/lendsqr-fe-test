@@ -15,6 +15,8 @@ const LoginPage = () => {
 
   const [isValid, setIsValid] = useState<boolean>(false);
 
+  const [loading, setIsLoading] = useState<boolean>(false);
+
   const validateForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -36,14 +38,20 @@ const LoginPage = () => {
       ...prevData,
       [name]: value,
     }));
-    console.log(e.target.value);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     if (isValid) {
+      setIsLoading(true);
+
       console.log("Form submitted:", formData);
+
+      //Setting login details to localStorage.
+      setTimeout(() => {        
+        setIsLoading(false);
+      }, 3000);
     }
   };
 
@@ -120,11 +128,20 @@ const LoginPage = () => {
 
             <button
               type="submit"
+              disabled={loading}
               className={`btn w-100 ${
                 isValid ? "valid-btn-primary" : "invalid-btn-primary"
               }`}
             >
               LOG IN
+              {/* tiny spinner for loading */}
+              {loading && (
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              )}
             </button>
           </form>
         </div>
