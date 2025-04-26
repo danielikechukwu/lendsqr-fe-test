@@ -11,10 +11,14 @@
     background-color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     .login-illustration {
-        width: 80%;
+        width: 90%;
+        height: 80%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
     }
 }
 
@@ -27,13 +31,19 @@ img {
     background-color: rgb(252, 252, 252);
     display: flex;
     justify-content: center;
-    align-items: center;
 
-    .login-form {
+    .login-form-container {
+        width: 90%;
+        height: 80%;
+        margin-top: 5%;
         display: flex;
+        justify-content: space-around;
         flex-direction: column;
-        width: 55%;
     }
+}
+
+.login-form-logo {
+    display: none;
 }
 
 .form-control {
@@ -175,7 +185,7 @@ img {
 
 h2 {
     font-family: "Poppins", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: xx-large;
     font-style: normal;
     color: rgba(33, 63, 125, 1);
@@ -196,4 +206,53 @@ h6 {
     color: rgba(57, 205, 204, 1);
     letter-spacing: 0.09em;
     cursor: pointer;
+}
+
+//Responsive styling
+
+@media (max-width: 767.98px) {
+
+    .left-section {
+        display: none;
+    }
+
+    .right-section {
+        flex: 1;
+        background-color: rgb(252, 252, 252);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .login-form-container {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+        }
+    }
+
+    .login-form-logo {
+        display: block;
+        padding-bottom: 17%;
+        min-width: 300px;
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    .login-form-container {
+        width: 90%;
+        height: 80%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            width: 55%;
+        }
+    }
 }

@@ -49,7 +49,7 @@ const LoginPage = () => {
       console.log("Form submitted:", formData);
 
       //Setting login details to localStorage.
-      setTimeout(() => {        
+      setTimeout(() => {
         setIsLoading(false);
       }, 3000);
     }
@@ -59,10 +59,29 @@ const LoginPage = () => {
     <div className="login-container">
       <div className="left-section">
         <div className="login-illustration">
-          <div style={{ paddingBottom: "17%" }}>
-            <img src={logo} alt="logo" />
+          <div
+            style={{
+              paddingBottom: "17%",
+              minWidth: "300px"
+            }}
+          >
+            <img
+              src={logo}
+              alt="logo"
+              width="200px"
+              height="auto"
+              style={{ flexShrink: 0 }}
+            />
           </div>
-          <div style={{ width: "100%", maxWidth: "100%", marginBottom: "17%" }}>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <img
               src={loginImage}
               alt="login-image"
@@ -73,77 +92,93 @@ const LoginPage = () => {
       </div>
 
       <div className="right-section">
-        <div className="login-form">
-          <div className="login-form-text">
-            <h2>Welcome!</h2>
-            <p>Enter details to login.</p>
+        <div className="login-form-container">
+          {/* Login Logo image */}
+          <div className="login-form-logo">
+            <img
+              src={logo}
+              alt="logo"
+              width="200px"
+              height="auto"
+              style={{ flexShrink: 0 }}
+            />
           </div>
 
-          <form onSubmit={handleSubmit} noValidate>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                placeholder="First name"
-                value={formData.name}
-                onChange={handleChange}
-              />
+          {/* Login form */}
+          <div
+            className="login-form"
+          >
+            <div className="login-form-text">
+              <h2>Welcome!</h2>
+              <p>Enter details to login.</p>
             </div>
 
-            <div className="mb-3">
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="mb-4">
-              <div className="password-wrapper">
+            <form onSubmit={handleSubmit} noValidate>
+              <div className="mb-3">
                 <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
+                  type="text"
                   className="form-control"
-                  id="password"
-                  name="password"
-                  value={formData.password}
+                  id="name"
+                  name="name"
+                  placeholder="First name"
+                  value={formData.name}
                   onChange={handleChange}
                 />
-                <span
-                  className="toggle-show"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? "HIDE" : "SHOW"}
-                </span>
               </div>
-            </div>
 
-            <h6>FORGOT PASSWORD?</h6>
+              <div className="mb-3">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className={`btn w-100 ${
-                isValid ? "valid-btn-primary" : "invalid-btn-primary"
-              }`}
-            >
-              LOG IN
-              {/* tiny spinner for loading */}
-              {loading && (
-                <span
-                  className="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-              )}
-            </button>
-          </form>
+              <div className="mb-4">
+                <div className="password-wrapper">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  <span
+                    className="toggle-show"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? "HIDE" : "SHOW"}
+                  </span>
+                </div>
+              </div>
+
+              <h6>FORGOT PASSWORD?</h6>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className={`btn w-100 ${
+                  isValid ? "valid-btn-primary" : "invalid-btn-primary"
+                }`}
+              >
+                LOG IN
+                {/* tiny spinner for loading */}
+                {loading && (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                )}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
