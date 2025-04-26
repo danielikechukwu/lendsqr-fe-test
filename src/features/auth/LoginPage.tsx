@@ -47,6 +47,8 @@ const LoginPage = () => {
       setIsLoading(true);
 
       console.log("Form submitted:", formData);
+      //Convert object to JSON string, and store in localStorage.
+      localStorage.setItem("user", JSON.stringify(formData));
 
       //Setting login details to localStorage.
       setTimeout(() => {
@@ -62,7 +64,7 @@ const LoginPage = () => {
           <div
             style={{
               paddingBottom: "17%",
-              minWidth: "300px"
+              minWidth: "300px",
             }}
           >
             <img
@@ -105,9 +107,7 @@ const LoginPage = () => {
           </div>
 
           {/* Login form */}
-          <div
-            className="login-form"
-          >
+          <div className="login-form">
             <div className="login-form-text">
               <h2>Welcome!</h2>
               <p>Enter details to login.</p>
