@@ -221,19 +221,19 @@ h6 {
         background-color: rgb(252, 252, 252);
         display: flex;
         justify-content: center;
-        align-items: center;
 
         .login-form-container {
             display: flex;
             flex-direction: column;
             width: 80%;
-        }
-    }
 
-    .login-form-logo {
-        display: block;
-        padding-bottom: 17%;
-        min-width: 300px;
+            .login-form-logo {
+                display: block;
+                padding-bottom: 5%;
+                min-width: 300px;
+            }
+
+        }
     }
 
 }
