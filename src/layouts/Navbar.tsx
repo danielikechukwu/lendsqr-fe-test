@@ -64,7 +64,7 @@ const Navbar = () => {
               height="32px"
               style={{ objectFit: "contain", borderRadius: "50%" }}
             />
-            <h6>{userDetail ? userDetail.name.toUpperCase() : 'Adedeji'}</h6>
+            <span>{userDetail ? userDetail.name.toUpperCase() : 'Adedeji'}</span>
             <img src={dropdown} width='8px' height='8px' style={{cursor: 'pointer'}} />
           </div>
 

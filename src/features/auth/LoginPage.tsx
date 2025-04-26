@@ -113,7 +113,7 @@ const LoginPage = () => {
 
           {/* Login form */}
           <div className={`${styles.loginForm}`}>
-            
+
             <div className={`${styles.loginFormText}`}>
               <h2>Welcome!</h2>
               <p>Enter details to login.</p>
