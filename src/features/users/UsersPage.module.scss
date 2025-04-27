@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 .userContainer {
-    border: 3px solid blue;
+    border: 1px solid blue;
 
     h6 {
         color: rgba(33, 63, 125, 1);
         font-family: 'Work Sans', sans-serif;
         font-weight: 500;
         font-size: 24px;
+    }
+
+    .userCard {
+        margin-top: 2%;
+        display: flex;
+        justify-content: space-between;
     }
 }
