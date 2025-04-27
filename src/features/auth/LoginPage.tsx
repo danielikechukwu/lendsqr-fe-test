@@ -62,12 +62,14 @@ const LoginPage = () => {
 
   return (
     <div className={styles.loginContainer}>
+
       <div className={`${styles.leftSection}`}>
         <div className={`${styles.loginIllustration}`}>
           <div
             style={{
+              display: 'block',
               paddingBottom: "17%",
-              minWidth: "300px",
+              minWidth: "300px"
             }}
           >
             <img
@@ -97,7 +99,6 @@ const LoginPage = () => {
       </div>
 
       <div className={`${styles.rightSection}`}>
-
         <div className={`${styles.loginFormContainer}`}>
 
           {/* Login Logo image */}
