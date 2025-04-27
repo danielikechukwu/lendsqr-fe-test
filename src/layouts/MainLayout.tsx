@@ -3,9 +3,7 @@ import Sidenav from "./SideNav";
 import Navbar from "./Navbar";
 import styles from './MainLayout.module.scss';
 
-const MainLayout = () => {
-
-  
+const MainLayout = () => {  
 
   return (
     <div className={`${styles.layoutContainer}`}>
