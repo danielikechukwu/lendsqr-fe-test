@@ -4,6 +4,7 @@ import users from "../../assets/users.svg"
 import activeUsers from "../../assets/active-users.svg"
 import usersWithLoan from "../../assets/users-with-loans.svg"
 import usersWithSavings from "../../assets/users-with-savings.svg"
+import UserTable from "./components/UserTable";
 
 const UsersPage: React.FC = () => {
   return (
@@ -20,7 +21,10 @@ const UsersPage: React.FC = () => {
         <UserCard title="USERS WITH SAVINGS" numberOfUser={102453} iconSrc={usersWithSavings} />
       </div>
 
-      <div className={`${styles.userTable}`}></div>
+      <div className={`${styles.userTable}`}>
+        <UserTable />
+      </div>
+      
     </div>
   );
 };
