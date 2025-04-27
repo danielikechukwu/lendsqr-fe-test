@@ -1,9 +1,15 @@
-import React from 'react'
+import styles from "./UsersPage.module.scss";
 
 const UsersPage = () => {
   return (
-    <div>UsersPage</div>
-  )
-}
+    <div className={`${styles.userContainer}`}>
+      <h6>Users</h6>
 
-export default UsersPage
+      <div className={`${styles.userCard}`}></div>
+
+      <div className={`${styles.userTable}`}></div>
+    </div>
+  );
+};
+
+export default UsersPage;

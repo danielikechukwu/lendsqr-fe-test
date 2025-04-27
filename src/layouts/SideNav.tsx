@@ -47,7 +47,7 @@ const Sidenav = () => {
 
         <div style={{ marginTop: "10%", marginBottom: "10%" }}>
           <NavLink
-            to="/users"
+            to="/dashboard"
             className={({ isActive }) =>
               isActive ? styles.activeNavLink : styles.navLink
             }
@@ -63,7 +63,7 @@ const Sidenav = () => {
 
         <div style={{ marginBottom: "2%" }}>
           <NavLink
-            to="/dashboard"
+            to="/users"
             className={({ isActive }) =>
               isActive ? styles.activeNavLink : styles.navLink
             }
