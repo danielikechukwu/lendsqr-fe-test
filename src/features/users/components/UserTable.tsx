@@ -47,8 +47,7 @@ const UserTable = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-            </th>
-            <th>
+            </th><th>
               <div className={`${styles.thContent}`}>
                 <span>USERNAME</span>
                 <img
@@ -58,8 +57,7 @@ const UserTable = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-            </th>
-            <th>
+            </th><th>
               <div className={`${styles.thContent}`}>
                 <span>EMAIL</span>
                 <img
@@ -69,8 +67,7 @@ const UserTable = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-            </th>
-            <th>
+            </th><th>
               <div className={`${styles.thContent}`}>
                 <span>PHONE NUMBER</span>
                 <img
@@ -80,8 +77,7 @@ const UserTable = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-            </th>
-            <th>
+            </th><th>
               <div className={`${styles.thContent}`}>
                 <span>DATE JOINED</span>
                 <img
@@ -91,8 +87,7 @@ const UserTable = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-            </th>
-            <th>
+            </th><th>
               <div className={`${styles.thContent}`}>
                 <span>STATUS</span>
                 <img
@@ -102,8 +97,7 @@ const UserTable = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-            </th>
-            <th></th> {/* For 3 dots */}
+            </th><th></th>
           </tr>
         </thead>
         <tbody>
