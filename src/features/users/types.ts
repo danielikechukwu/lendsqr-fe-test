@@ -5,6 +5,7 @@ export type UserCardProps = {
 }
 
 export type Guarantor = {
+    id: number;
     name: string;
     phoneNumber: string;
     email: string;
@@ -14,12 +15,15 @@ export type Guarantor = {
 export type User =  {
     id: number;
     organization: string;
+    code: string;
     username: string;
     email: string;
     phoneNumber: string;
     dateJoined: string;
     status: string;
     fullName: string;
+    accountNumber: string;
+    bankName: string;
     bvn: string;
     gender: string;
     maritalStatus: string;
