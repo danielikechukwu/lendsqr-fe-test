@@ -12,7 +12,7 @@ export type Guarantor = {
 }
 
 export type User =  {
-    id: string;
+    id: number;
     organization: string;
     username: string;
     email: string;
