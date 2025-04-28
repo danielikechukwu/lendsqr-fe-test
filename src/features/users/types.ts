@@ -4,7 +4,14 @@ export type UserCardProps = {
     numberOfUser: number;
 }
 
-export type User =     {
+export type Guarantor = {
+    name: string;
+    phoneNumber: string;
+    email: string;
+    relationship: string
+}
+
+export type User =  {
     id: string;
     organization: string;
     username: string;
@@ -28,8 +35,5 @@ export type User =     {
     twitter: string;
     facebook: string;
     instagram: string;
-    guarantorName: string;
-    guarantorPhoneNumber: string;
-    guarantorEmail: string;
-    guarantorRelationship: string;
+    guarantors: Array<Guarantor>
   }
