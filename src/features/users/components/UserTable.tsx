@@ -8,13 +8,13 @@ import blacklist from "../../../assets/icons/delete-friend.svg";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User } from "../types";
-import { addUsers, getAllUsers } from "../services/indexedDB";
+import { addUsers, getAllUsers, initDB } from "../services/indexedDB";
 import axios from "axios";
 
 const MOCKY_URL = import.meta.env.VITE_API_MOCKY_URL;
 
 const UserTable = () => {
-  const [menuOpen, setMenuOpen] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState<number | null>(null);
 
   const [users, setUsersData] = useState<User[]>([]);
 
@@ -25,28 +25,40 @@ const UserTable = () => {
       try {
         const storedUsers = await getAllUsers();
         if (storedUsers.length > 0) {
-          console.log('Loaded from IndexedDB');
+          console.log("Loaded from IndexedDB");
           setUsersData(storedUsers);
         } else {
           const response = await axios.get(MOCKY_URL);
           const data = response.data;
 
           if (Array.isArray(data)) {
-            console.log('Fetched from API and saving to IndexedDB');
+            console.log("Fetched from API and saving to IndexedDB");
             await addUsers(data); // store all 500 users
             setUsersData(data);
           } else {
-            console.error('Data from API is not an array');
-            console.log(MOCKY_URL)
+            console.error("Data from API is not an array");
+            console.log(MOCKY_URL);
           }
         }
       } catch (error) {
-        console.error('Error fetching/storing users:', error);
+        console.error("Error fetching/storing users:", error);
       }
     };
 
     fetchAndStoreUsers();
   }, []);
+
+  //Check for user before navigating
+  const checkUser = async (userId: number) => {
+    const db = await initDB();
+    const user = await db.get("users", userId);
+
+    if (user) {
+      navigate(`/users/${userId}`);
+    } else {
+      alert("User not found in IndexedDB");
+    }
+  };
 
   // Close popup when clicking outside
   useEffect(() => {
@@ -62,7 +74,7 @@ const UserTable = () => {
 
   const navigate = useNavigate();
 
-  const togglePopup = (id: string) => {
+  const togglePopup = (id: number) => {
     setMenuOpen(menuOpen === id ? null : id);
   };
 
@@ -173,7 +185,7 @@ const UserTable = () => {
                     <div ref={popupRef} className={styles.dropdown}>
                       <div
                         className={styles.dropdownItem}
-                        onClick={() => navigate(`/users/${user.id}`)}
+                        onClick={() => checkUser(user.id)}
                       >
                         <img src={view} alt="View" />
                         View Details

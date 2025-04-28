@@ -1,11 +1,26 @@
 import styles from "./UserDetailPage.module.scss";
 import back from "../../assets/icons/np-back.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import avatar from "../../assets/user-detail-avatar.svg";
-import { users } from "./users"
+import { useEffect, useState } from "react";
+import { User } from "./types";
+import { initDB } from "./services/indexedDB";
 
 const UserDetailPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const db = await initDB();
+      const userData = await db.get('users', Number(id));
+      setUser(userData ?? null);
+    };
+
+    fetchUser();
+  }, [id]);
 
   return (
     <div className={`${styles.userDetailContainer}`}>
@@ -29,8 +44,8 @@ const UserDetailPage = () => {
           <img src={avatar} width={90} height={90} />
 
           <div className={`${styles.userInfo}`}>
-            <h6>Grace Effiom</h6>
-            <p>LSQFf587g90</p>
+            <h6>{user?.fullName}</h6>
+            <p>{user?.code}</p>
           </div>
 
           <div className={`${styles.verticalLine}`} />
@@ -43,8 +58,8 @@ const UserDetailPage = () => {
           <div className={`${styles.verticalLine}`} />
 
           <div className={`${styles.userBalance}`}>
-            <h6>&#8358; 200,000.00</h6>
-            <p>9912345678/Providus Bank</p>
+            <h6>{user?.loanRepayment}</h6>
+            <p>{user?.accountNumber}/{user?.bankName}</p>
           </div>
         </div>
         <div className={`${styles.headerTabs}`}></div>
@@ -56,35 +71,35 @@ const UserDetailPage = () => {
           <div className={`${styles.userInfoRecord}`}>
             <div>
               <span>FULL NAME</span>
-              <p>Grace Effiom</p>
+              <p>{user?.fullName}</p>
             </div>
             <div>
               <span>PHONE NUMBER</span>
-              <p>Grace Effiom</p>
+              <p>{user?.phoneNumber}</p>
             </div>
             <div>
               <span>EMAIL ADDRESS</span>
-              <p>Grace Effiom</p>
+              <p>{user?.email}</p>
             </div>
             <div>
               <span>BVN</span>
-              <p>Grace Effiom</p>
+              <p>{user?.bvn}</p>
             </div>
             <div>
               <span>GENDER</span>
-              <p>Grace Effiom</p>
+              <p>{user?.gender}</p>
             </div>
             <div>
               <span>MARITAL STATUS</span>
-              <p>Grace Effiom</p>
+              <p>{user?.maritalStatus}</p>
             </div>
             <div>
               <span>CHILDREN</span>
-              <p>Grace Effiom</p>
+              <p>{user?.children}</p>
             </div>
             <div>
               <span>TYPE OF RESIDENCE</span>
-              <p>Grace Effiom</p>
+              <p>{user?.residenceType}</p>
             </div>
           </div>
         </div>
@@ -95,31 +110,31 @@ const UserDetailPage = () => {
           <div className={`${styles.userInfoRecord}`}>
             <div>
               <span>LEVEL OF EDUCATION</span>
-              <p>Grace Effiom</p>
+              <p>{user?.levelOfEducation}</p>
             </div>
             <div>
               <span>EMPLOYMENT STATUS</span>
-              <p>Grace Effiom</p>
+              <p>{user?.employmentStatus}</p>
             </div>
             <div>
               <span>SECTOR OF EMPLOYMENT</span>
-              <p>Grace Effiom</p>
+              <p>{user?.sectorOfEmployment}</p>
             </div>
             <div>
               <span>DURATION OF EMPLOYMENT</span>
-              <p>Grace Effiom</p>
+              <p>{user?.durationOfEmployment}</p>
             </div>
             <div>
               <span>OFFICE EMAIL</span>
-              <p>Grace Effiom</p>
+              <p>{user?.officeEmail}</p>
             </div>
             <div>
               <span>MONTHLY INCOME</span>
-              <p>Grace Effiom</p>
+              <p>{user?.monthlyIncome}</p>
             </div>
             <div>
               <span>LOAN REPAYMENT</span>
-              <p>Grace Effiom</p>
+              <p>{user?.loanRepayment}</p>
             </div>
           </div>
         </div>
@@ -130,15 +145,15 @@ const UserDetailPage = () => {
           <div className={`${styles.userInfoRecord}`}>
             <div>
               <span>TWITTER</span>
-              <p>Grace Effiom</p>
+              <p>{user?.twitter}</p>
             </div>
             <div>
               <span>FACEBOOK</span>
-              <p>Grace Effiom</p>
+              <p>{user?.facebook}</p>
             </div>
             <div>
               <span>INSTAGRAM</span>
-              <p>Grace Effiom</p>
+              <p>{user?.instagram}</p>
             </div>
           </div>
         </div>
@@ -146,6 +161,7 @@ const UserDetailPage = () => {
 
         <div className={`${styles.guarators}`}>
           <h6>Guarantors</h6>
+          {/* {user?.guarantors.map()} */}
           <div className={`${styles.userInfoRecord}`}>
             <div>
               <span>FULL NAME</span>

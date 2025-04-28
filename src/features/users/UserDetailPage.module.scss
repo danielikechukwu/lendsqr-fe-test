@@ -61,7 +61,6 @@ $font-family-primary: 'Work Sans', sans-serif;
     }
 
     .userInfoHeader {
-        border: 1px solid purple;
         margin-top: 2%;
         background-color: rgba(255, 255, 255, 1);
         padding-left: 2%;
@@ -72,7 +71,6 @@ $font-family-primary: 'Work Sans', sans-serif;
             flex-direction: row;
             align-items: center;
             gap: 20px;
-            border: 1px solid blue;
             height: 100px;
 
             .verticalLine {
@@ -139,7 +137,6 @@ $font-family-primary: 'Work Sans', sans-serif;
     }
 
     .userInfoContent {
-        border: 1px solid blue;
         margin-top: 2%;
         background-color: rgba(255, 255, 255, 1);
         padding: 2%;
@@ -157,10 +154,6 @@ $font-family-primary: 'Work Sans', sans-serif;
             font-weight: 500;
             font-size: 12px;
             color: rgba(33, 63, 125, 1);
-        }
-
-        .guarators {
-            border: 1px solid green;
         }
 
         .userInfoRecord {
