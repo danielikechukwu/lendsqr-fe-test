@@ -8,7 +8,7 @@ const UserCard: React.FC<UserCardProps> = (props: UserCardProps) => {
 
       <span>{props.title}</span>
 
-      <h6>{props.numberOfUser.toLocaleString()}</h6>
+      <h6>{props.numberOfUser}</h6>
     </div>
   );
 };
