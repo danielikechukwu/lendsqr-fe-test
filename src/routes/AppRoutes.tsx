@@ -13,7 +13,15 @@ const AppRoutes = () => {
       <Route element={<MainLayout />}>
         <Route path="/dashboard" element={<UsersPage />} />
         <Route path="/users" element={<UsersPage />} />
-        <Route path="/users/:id" element={<UserDetailPage />} />
+
+        <Route path="/users/:id" element={<UserDetailPage />}>
+          <Route path="/users/:id/general-details" element={<UsersPage />} />
+          <Route path="/users/:id/documents" element={<UsersPage />} />
+          <Route path="/users/:id/bank-details" element={<UsersPage />} />
+          <Route path="/users/:id/loans" element={<UsersPage />} />
+          <Route path="/users/:id/savings" element={<UsersPage />} />
+          <Route path="/users/:id/app-and-system" element={<UsersPage />} />
+        </Route>
 
         <Route path="/guarators" element={<UsersPage />} />
         <Route path="/loans" element={<UsersPage />} />
@@ -36,7 +44,6 @@ const AppRoutes = () => {
         <Route path="/fees-and-pricing" element={<UsersPage />} />
         <Route path="/audit-logs" element={<UsersPage />} />
       </Route>
-
     </Routes>
   );
 };

@@ -25,23 +25,26 @@ const UserTable = () => {
       try {
         const storedUsers = await getAllUsers();
         if (storedUsers.length > 0) {
-          console.log("Loaded from IndexedDB");
+          
+          // Load from IndexedDB
           setUsersData(storedUsers);
         } else {
           const response = await axios.get(MOCKY_URL);
           const data = response.data;
 
           if (Array.isArray(data)) {
-            console.log("Fetched from API and saving to IndexedDB");
+
+            // Fetched from API and saving to IndexedDB
             await addUsers(data); // store all 500 users
             setUsersData(data);
           } else {
-            console.error("Data from API is not an array");
+            // Data from API is not an array
             console.log(MOCKY_URL);
           }
         }
       } catch (error) {
-        console.error("Error fetching/storing users:", error);
+        alert('Error fetching/storing users')
+        console.error(error);
       }
     };
 

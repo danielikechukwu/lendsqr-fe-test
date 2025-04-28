@@ -1,4 +1,3 @@
-import LoginPage from "./features/auth/LoginPage"
 import './App.scss'
 import AppRoutes from "./routes/AppRoutes"
 
