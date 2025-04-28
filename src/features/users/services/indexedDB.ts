@@ -8,8 +8,8 @@ interface UserDB extends DBSchema {
   };
 }
 
-const DB_NAME = 'UserDB';
-const STORE_NAME = 'users';
+export const DB_NAME = 'UserDB';
+export const STORE_NAME = 'users';
 const DB_VERSION = 1;
 
 // Initialize or open the database
