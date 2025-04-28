@@ -138,7 +138,7 @@ const UserTable = () => {
                   <div ref={popupRef} className={styles.dropdown}>
                     <div
                       className={styles.dropdownItem}
-                      onClick={() => navigate("/")}
+                      onClick={() => navigate(`/users/${user.id}`)}
                     >
                       <img src={view} alt="View" />
                       View Details
