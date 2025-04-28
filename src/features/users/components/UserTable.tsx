@@ -8,8 +8,15 @@ import blacklist from "../../../assets/icons/delete-friend.svg";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User } from "../types";
-import { addUsers, getAllUsers, initDB } from "../services/indexedDB";
+import {
+  addUsers,
+  DB_NAME,
+  getAllUsers,
+  initDB,
+  STORE_NAME,
+} from "../services/indexedDB";
 import axios from "axios";
+import { openDB } from "idb";
 
 const MOCKY_URL = import.meta.env.VITE_API_MOCKY_URL;
 
@@ -25,7 +32,6 @@ const UserTable = () => {
       try {
         const storedUsers = await getAllUsers();
         if (storedUsers.length > 0) {
-          
           // Load from IndexedDB
           setUsersData(storedUsers);
         } else {
@@ -33,7 +39,6 @@ const UserTable = () => {
           const data = response.data;
 
           if (Array.isArray(data)) {
-
             // Fetched from API and saving to IndexedDB
             await addUsers(data); // store all 500 users
             setUsersData(data);
@@ -43,7 +48,7 @@ const UserTable = () => {
           }
         }
       } catch (error) {
-        alert('Error fetching/storing users')
+        alert("Error fetching/storing users");
         console.error(error);
       }
     };
@@ -54,7 +59,7 @@ const UserTable = () => {
   //Check for user before navigating
   const checkUser = async (userId: number) => {
     const db = await initDB();
-    const user = await db.get("users", userId);
+    const user: User | undefined = await db.get("users", userId);
 
     if (user) {
       navigate(`/users/${userId}`);
@@ -80,6 +85,50 @@ const UserTable = () => {
   const togglePopup = (id: number) => {
     setMenuOpen(menuOpen === id ? null : id);
   };
+
+  //Status change
+  async function handleUserAction(userId: number, actionType: string) {
+    const db = await openDB(DB_NAME, 1);
+
+    // Check user availability in database
+    const user = await db.get(STORE_NAME, userId);
+
+    if (!user) {
+      console.error("User not found");
+      return;
+    }
+
+    // Perform user status change
+    switch (actionType) {
+      case "activate":
+        user.status = "Active";
+        break;
+      case "blacklist":
+        user.status = "Blacklisted";
+        break;
+      case "inactivate":
+        user.status = "Inactive";
+        break;
+      default:
+        alert(`Unknown action: ${actionType}`);
+        return;
+    }
+
+    // Open transaction for writing
+    const tx = db.transaction(STORE_NAME, "readwrite");
+    const store = tx.objectStore(STORE_NAME);
+    await store.put(user);
+    await tx.done;
+
+    //Update local state
+    setUsersData((prevUsers: User[]) =>
+      prevUsers.map((u: User) =>
+        u.id === userId ? { ...u, status: user.status } : u
+      )
+    );
+
+    alert(`User ${actionType}d successfully!`);
+  }
 
   return (
     <div className={`${styles.userTableContainer}`}>
@@ -186,27 +235,111 @@ const UserTable = () => {
                   {/* Menu dropdown */}
                   {menuOpen === user.id && (
                     <div ref={popupRef} className={styles.dropdown}>
-                      <div
-                        className={styles.dropdownItem}
-                        onClick={() => checkUser(user.id)}
-                      >
-                        <img src={view} alt="View" />
-                        View Details
-                      </div>
-                      <div
-                        className={styles.dropdownItem}
-                        onClick={() => navigate("/")}
-                      >
-                        <img src={blacklist} alt="Blacklist" />
-                        Blacklist User
-                      </div>
-                      <div
-                        className={styles.dropdownItem}
-                        onClick={() => navigate("/")}
-                      >
-                        <img src={activate} alt="Activate" />
-                        Activate User
-                      </div>
+                      {/* Pending users */}
+                      {user.status.toLocaleLowerCase() === "pending" && (
+                        <div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => checkUser(user.id)}
+                          >
+                            <img src={view} alt="View" />
+                            View Details
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() =>
+                              handleUserAction(user.id, "activate")
+                            }
+                          >
+                            <img src={activate} alt="Activate" />
+                            Activate User
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Active users */}
+                      {user.status.toLocaleLowerCase() === "active" && (
+                        <div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => checkUser(user.id)}
+                          >
+                            <img src={view} alt="View" />
+                            View Details
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() =>
+                              handleUserAction(user.id, "blacklist")
+                            }
+                          >
+                            <img src={blacklist} alt="Blacklist" />
+                            Blacklist User
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() =>
+                              handleUserAction(user.id, "inactivate")
+                            }
+                          >
+                            <img src={blacklist} alt="inactivate" />
+                            Deactivate User
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Inactive users */}
+                      {user.status.toLocaleLowerCase() === "inactive" && (
+                        <div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => checkUser(user.id)}
+                          >
+                            <img src={view} alt="View" />
+                            View Details
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() =>
+                              handleUserAction(user.id, "blacklist")
+                            }
+                          >
+                            <img src={blacklist} alt="Blacklist" />
+                            Blacklist User
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() =>
+                              handleUserAction(user.id, "activate")
+                            }
+                          >
+                            <img src={activate} alt="Activate" />
+                            Activate User
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Blacklist users */}
+                      {user.status.toLocaleLowerCase() === "blacklisted" && (
+                        <div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => checkUser(user.id)}
+                          >
+                            <img src={view} alt="View" />
+                            View Details
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() =>
+                              handleUserAction(user.id, "activate")
+                            }
+                          >
+                            <img src={activate} alt="Activate" />
+                            Activate User
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </td>
