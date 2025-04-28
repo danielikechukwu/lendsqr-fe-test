@@ -3,8 +3,9 @@ import back from "../../assets/icons/np-back.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import avatar from "../../assets/user-detail-avatar.svg";
 import { useEffect, useState } from "react";
-import { User } from "./types";
-import { initDB } from "./services/indexedDB";
+import { Guarantor, User } from "./types";
+import { DB_NAME, initDB, STORE_NAME } from "./services/indexedDB";
+import { openDB } from "idb";
 
 const UserDetailPage = () => {
   const navigate = useNavigate();
@@ -15,12 +16,46 @@ const UserDetailPage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const db = await initDB();
-      const userData = await db.get('users', Number(id));
+      const userData = await db.get("users", Number(id));
       setUser(userData ?? null);
     };
 
     fetchUser();
   }, [id]);
+
+  async function handleUserAction(actionType: string) {
+    const db = await openDB(DB_NAME, 1); 
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    const store = tx.objectStore(STORE_NAME);
+  
+    //update status
+    const updatedUser = { ...user } as User; 
+
+    switch (actionType) {
+      case 'activate':
+        updatedUser.status = 'Active';
+        break;
+      case 'blacklist':
+        updatedUser.status = 'Blacklisted';
+        break;
+      case 'inactivate':
+        updatedUser.status = 'Inactive';
+        break;
+      default:
+        alert(`Unknown action: ${actionType}`);
+        return;
+    }
+  
+    // `put` will update based on primaryKey
+    await store.put(updatedUser);
+    await tx.done;
+    
+    //updating local state
+    setUser(updatedUser);
+
+    alert(`User ${actionType}d successfully!`);
+  }
+  
 
   return (
     <div className={`${styles.userDetailContainer}`}>
@@ -32,11 +67,33 @@ const UserDetailPage = () => {
       <div className={`${styles.header}`}>
         <h6>User Details</h6>
 
-        <div className={`${styles.buttons}`}>
-          <button className={`${styles.blacklist}`}>BLACKLIST USER</button>
+        {user?.status.toLocaleLowerCase() === "pending" && (
+          <div className={`${styles.buttons}`}>
+            <button className={`${styles.activate}`} onClick={() => handleUserAction("activate")}>ACTIVATE USER</button>
+          </div>
+        )}
 
-          <button className={`${styles.activate}`}>ACTIVATE USER</button>
-        </div>
+        {user?.status.toLocaleLowerCase() === "active" && (
+          <div className={`${styles.buttons}`}>
+            <button className={`${styles.blacklist}`} onClick={() => handleUserAction("blacklist")}>BLACKLIST USER</button>
+
+            <button className={`${styles.deactivate}`} onClick={() => handleUserAction("inactivate")}>DEACTIVATE USER</button>
+          </div>
+        )}
+
+        {user?.status.toLocaleLowerCase() === "inactive" && (
+          <div className={`${styles.buttons}`}>
+            <button className={`${styles.activate}`} onClick={() => handleUserAction("activate")}>ACTIVATE USER</button>
+
+            <button className={`${styles.blacklist}`} onClick={() => handleUserAction("blacklist")}>BLACKLIST USER</button>
+          </div>
+        )}
+
+        {user?.status.toLocaleLowerCase() === "blacklisted" && (
+          <div className={`${styles.buttons}`}>
+            <button className={`${styles.activate}`} onClick={() => handleUserAction("activate")}>ACTIVATE USER</button>
+          </div>
+        )}
       </div>
 
       <div className={`${styles.userInfoHeader}`}>
@@ -59,7 +116,9 @@ const UserDetailPage = () => {
 
           <div className={`${styles.userBalance}`}>
             <h6>{user?.loanRepayment}</h6>
-            <p>{user?.accountNumber}/{user?.bankName}</p>
+            <p>
+              {user?.accountNumber}/{user?.bankName}
+            </p>
           </div>
         </div>
         <div className={`${styles.headerTabs}`}></div>
@@ -161,25 +220,32 @@ const UserDetailPage = () => {
 
         <div className={`${styles.guarators}`}>
           <h6>Guarantors</h6>
-          {/* {user?.guarantors.map()} */}
-          <div className={`${styles.userInfoRecord}`}>
-            <div>
-              <span>FULL NAME</span>
-              <p>Grace Effiom</p>
-            </div>
-            <div>
-              <span>PHONE NUMBER</span>
-              <p>Grace Effiom</p>
-            </div>
-            <div>
-              <span>EMAIL ADDRESS</span>
-              <p>Grace Effiom</p>
-            </div>
-            <div>
-              <span>RELATIONSHIP</span>
-              <p>Grace Effiom</p>
-            </div>
-          </div>
+          {user?.guarantors.map((guarantor: Guarantor, index: number) =>
+            guarantor ? (
+              <div className={`${styles.userInfoRecord}`} key={index}>
+                <div>
+                  <span>FULL NAME</span>
+                  <p>{guarantor.name}</p>
+                </div>
+                <div>
+                  <span>PHONE NUMBER</span>
+                  <p>{guarantor.phoneNumber}</p>
+                </div>
+                <div>
+                  <span>EMAIL ADDRESS</span>
+                  <p>{guarantor.email}</p>
+                </div>
+                <div>
+                  <span>RELATIONSHIP</span>
+                  <p>{guarantor.relationship}</p>
+                </div>
+
+                <div className={`${styles.guarantorHorizontalLine}`} />
+              </div>
+            ) : (
+              <span key={`no-guarantor-${index}`}>No Guarantor provided</span>
+            )
+          )}
         </div>
       </div>
     </div>
