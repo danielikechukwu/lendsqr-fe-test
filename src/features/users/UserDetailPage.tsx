@@ -121,7 +121,9 @@ const UserDetailPage = () => {
             </p>
           </div>
         </div>
-        <div className={`${styles.headerTabs}`}></div>
+        <div className={`${styles.headerTabs}`}>
+          {/* TODO: Implement tab navigation */}
+        </div>
       </div>
 
       <div className={`${styles.userInfoContent}`}>
