@@ -34,8 +34,8 @@ export type User =  {
     sectorOfEmployment: string;
     durationOfEmployment: string;
     officeEmail: string;
-    monthlyIncome: string;
-    loanRepayment: string;
+    monthlyIncome: number;
+    loanRepayment: number;
     twitter: string;
     facebook: string;
     instagram: string;
