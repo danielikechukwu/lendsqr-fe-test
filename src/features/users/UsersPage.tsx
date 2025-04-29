@@ -49,9 +49,9 @@ const UsersPage: React.FC = () => {
 
   const activeUserCount: number = users.filter((user: User) => user.status.toLocaleLowerCase() === 'active').length;
 
-  const userWithLoans: number = users.filter((user: User) => user.loanRepayment !== "").length;
+  const userWithLoans: number = users.filter((user: User) => user.loanRepayment > 0).length;
 
-  const userWithSavings: number = users.filter((user: User) => user.monthlyIncome !== "").length;
+  const userWithSavings: number = users.filter((user: User) => user.monthlyIncome > 0).length;
 
   return (
     <div className={`${styles.userContainer}`}>
