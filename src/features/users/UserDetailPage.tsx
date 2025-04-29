@@ -24,38 +24,37 @@ const UserDetailPage = () => {
   }, [id]);
 
   async function handleUserAction(actionType: string) {
-    const db = await openDB(DB_NAME, 1); 
-    const tx = db.transaction(STORE_NAME, 'readwrite');
+    const db = await openDB(DB_NAME, 1);
+    const tx = db.transaction(STORE_NAME, "readwrite");
     const store = tx.objectStore(STORE_NAME);
-  
+
     //update status
-    const updatedUser = { ...user } as User; 
+    const updatedUser = { ...user } as User;
 
     switch (actionType) {
-      case 'activate':
-        updatedUser.status = 'Active';
+      case "activate":
+        updatedUser.status = "Active";
         break;
-      case 'blacklist':
-        updatedUser.status = 'Blacklisted';
+      case "blacklist":
+        updatedUser.status = "Blacklisted";
         break;
-      case 'inactivate':
-        updatedUser.status = 'Inactive';
+      case "inactivate":
+        updatedUser.status = "Inactive";
         break;
       default:
         alert(`Unknown action: ${actionType}`);
         return;
     }
-  
+
     // `put` will update based on primaryKey
     await store.put(updatedUser);
     await tx.done;
-    
+
     //updating local state
     setUser(updatedUser);
 
     alert(`User ${actionType}d successfully!`);
   }
-  
 
   return (
     <div className={`${styles.userDetailContainer}`}>
@@ -69,29 +68,59 @@ const UserDetailPage = () => {
 
         {user?.status.toLocaleLowerCase() === "pending" && (
           <div className={`${styles.buttons}`}>
-            <button className={`${styles.activate}`} onClick={() => handleUserAction("activate")}>ACTIVATE USER</button>
+            <button
+              className={`${styles.activate}`}
+              onClick={() => handleUserAction("activate")}
+            >
+              ACTIVATE USER
+            </button>
           </div>
         )}
 
         {user?.status.toLocaleLowerCase() === "active" && (
           <div className={`${styles.buttons}`}>
-            <button className={`${styles.blacklist}`} onClick={() => handleUserAction("blacklist")}>BLACKLIST USER</button>
+            <button
+              className={`${styles.blacklist}`}
+              onClick={() => handleUserAction("blacklist")}
+            >
+              BLACKLIST USER
+            </button>
 
-            <button className={`${styles.deactivate}`} onClick={() => handleUserAction("inactivate")}>DEACTIVATE USER</button>
+            <button
+              className={`${styles.deactivate}`}
+              onClick={() => handleUserAction("inactivate")}
+            >
+              DEACTIVATE USER
+            </button>
           </div>
         )}
 
         {user?.status.toLocaleLowerCase() === "inactive" && (
           <div className={`${styles.buttons}`}>
-            <button className={`${styles.activate}`} onClick={() => handleUserAction("activate")}>ACTIVATE USER</button>
+            <button
+              className={`${styles.activate}`}
+              onClick={() => handleUserAction("activate")}
+            >
+              ACTIVATE USER
+            </button>
 
-            <button className={`${styles.blacklist}`} onClick={() => handleUserAction("blacklist")}>BLACKLIST USER</button>
+            <button
+              className={`${styles.blacklist}`}
+              onClick={() => handleUserAction("blacklist")}
+            >
+              BLACKLIST USER
+            </button>
           </div>
         )}
 
         {user?.status.toLocaleLowerCase() === "blacklisted" && (
           <div className={`${styles.buttons}`}>
-            <button className={`${styles.activate}`} onClick={() => handleUserAction("activate")}>ACTIVATE USER</button>
+            <button
+              className={`${styles.activate}`}
+              onClick={() => handleUserAction("activate")}
+            >
+              ACTIVATE USER
+            </button>
           </div>
         )}
       </div>
@@ -115,7 +144,13 @@ const UserDetailPage = () => {
           <div className={`${styles.verticalLine}`} />
 
           <div className={`${styles.userBalance}`}>
-            <h6>{user?.loanRepayment}</h6>
+            <h6>
+              &#8358;
+              {user?.loanRepayment.toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </h6>
             <p>
               {user?.accountNumber}/{user?.bankName}
             </p>
@@ -191,11 +226,17 @@ const UserDetailPage = () => {
             </div>
             <div>
               <span>MONTHLY INCOME</span>
-              <p>{user?.monthlyIncome}</p>
+              <p>&#8358;{user?.monthlyIncome.toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}</p>
             </div>
             <div>
               <span>LOAN REPAYMENT</span>
-              <p>{user?.loanRepayment}</p>
+              <p>&#8358;{user?.loanRepayment.toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}</p>
             </div>
           </div>
         </div>
