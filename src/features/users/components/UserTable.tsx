@@ -72,20 +72,13 @@ const UserTable = () => {
     fetchAndStoreUsers();
   }, []);
 
-  // Check for duplicate IDs
-  const ids = users.map((u) => u.id);
-  const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
-  if (duplicates.length > 0) {
-    console.warn("🚨 Duplicate IDs found:", duplicates);
-  }
-
   //Check for user before navigating
   const checkUser = async (userId: number) => {
     const db = await initDB();
     const user: User | undefined = await db.get("users", userId);
 
     if (user) {
-      navigate(`/users/${userId}`);
+      navigate(`/users/${userId}/general-details`);
     } else {
       alert("User not found in IndexedDB");
     }

@@ -3,6 +3,12 @@ import LoginPage from "../features/auth/LoginPage";
 import MainLayout from "../layouts/MainLayout";
 import UsersPage from "../features/users/UsersPage";
 import UserDetailPage from "../features/users/UserDetailPage";
+import UserGeneralDetails from "../features/users/UserGeneralDetails";
+import Document from "../features/users/Document";
+import BankDetails from "../features/users/BankDetails";
+import Loans from "../features/users/Loans";
+import Savings from "../features/users/Savings";
+import AppAndSystems from "../features/users/AppAndSystems";
 
 const AppRoutes = () => {
   return (
@@ -15,12 +21,12 @@ const AppRoutes = () => {
         <Route path="/users" element={<UsersPage />} />
 
         <Route path="/users/:id" element={<UserDetailPage />}>
-          <Route path="/users/:id/general-details" element={<UsersPage />} />
-          <Route path="/users/:id/documents" element={<UsersPage />} />
-          <Route path="/users/:id/bank-details" element={<UsersPage />} />
-          <Route path="/users/:id/loans" element={<UsersPage />} />
-          <Route path="/users/:id/savings" element={<UsersPage />} />
-          <Route path="/users/:id/app-and-system" element={<UsersPage />} />
+          <Route path="/users/:id/general-details" element={<UserGeneralDetails />} />
+          <Route path="/users/:id/documents" element={<Document />} />
+          <Route path="/users/:id/bank-details" element={<BankDetails />} />
+          <Route path="/users/:id/loans" element={<Loans />} />
+          <Route path="/users/:id/savings" element={<Savings />} />
+          <Route path="/users/:id/app-and-system" element={<AppAndSystems />} />
         </Route>
 
         <Route path="/guarators" element={<UsersPage />} />
