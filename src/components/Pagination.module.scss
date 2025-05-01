@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+$font-family-primary: 'Work Sans', sans-serif;
+
+.paginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-family-primary;
+
+  .paginationInfo {
+    color: #666;
+    font-size: 14px;
+  }
+
+  .paginationControls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .paginationButton {
+    border: none;
+    background-color: rgba(33, 63, 125, 0.1);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family-primary;
+    font-size: 12px;
+    color: rgba(84, 95, 125, 1);
+
+    &:hover:not(:disabled) {
+      background-color: #f0f0f0;
+    }
+
+    &:disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+  }
+
+  .paginationEllipsis {
+    padding: 5px 10px;
+    color: #666;
+  }
+}
+
+.itemPerSelector {
+  display: flex;
+  gap: 12px;
+}
+
+.itemsPerPageSelector {
+
+  select {
+    border: none;
+    width: 80px;
+    height: 25px;
+    background-color: rgba(33, 63, 125, 0.1);
+    color: rgba(84, 95, 125, 1);
+
+    option {
+      color: rgba(84, 95, 125, 1);
+    }
+
+  }
+}

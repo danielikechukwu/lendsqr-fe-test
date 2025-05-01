@@ -17,6 +17,7 @@ $font-family-primary: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 400;
 
+
     th,
     td {
         padding: 12px 16px;
@@ -113,16 +114,21 @@ $font-family-primary: 'Work Sans', sans-serif;
         font-family: $font-family-primary;
         font-weight: 500;
         font-size: 11px;
-      
+
         &:hover {
-          background-color: #f5f5f5;
+            background-color: #f5f5f5;
         }
-      
+
         img {
-          width: 14px;
-          height: 14px;
+            width: 14px;
+            height: 14px;
         }
-      }
-      
-  }
-  
+    }
+
+}
+
+.paginationBar {
+    margin-top: 2%;
+    background-color: transparent;
+    padding: 0% 1% 0% 1%;
+}

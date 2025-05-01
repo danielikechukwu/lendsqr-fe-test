@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Login } from "./types";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [formData, setFormData] = useState<Login>({
