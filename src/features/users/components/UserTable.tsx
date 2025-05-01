@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { RawUser, User } from "../types";
 import {
   addUsers,
+  clearUsers,
   DB_NAME,
   getAllUsers,
   initDB,
@@ -48,10 +49,11 @@ const UserTable = () => {
           );
 
           if (Array.isArray(usersWithIds)) {
-            
-            const validUsers = usersWithIds.filter(
+            const validUsers: User[] = usersWithIds.filter(
               (user) => typeof user.id === "number"
             );
+
+            await clearUsers();
 
             // Fetched from API and saving to IndexedDB
             await addUsers(validUsers); // store all 500 users
@@ -69,6 +71,13 @@ const UserTable = () => {
 
     fetchAndStoreUsers();
   }, []);
+
+  // Check for duplicate IDs
+  const ids = users.map((u) => u.id);
+  const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+  if (duplicates.length > 0) {
+    console.warn("🚨 Duplicate IDs found:", duplicates);
+  }
 
   //Check for user before navigating
   const checkUser = async (userId: number) => {
@@ -220,7 +229,7 @@ const UserTable = () => {
         </thead>
         <tbody>
           {users.length > 0 ? (
-            users.map((user) => (
+            users.map((user: User) => (
               <tr key={user.id}>
                 <td>{user.organization}</td>
                 <td>{user.username}</td>
