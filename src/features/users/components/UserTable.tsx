@@ -7,7 +7,7 @@ import activate from "../../../assets/icons/np-user.svg";
 import blacklist from "../../../assets/icons/delete-friend.svg";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "../types";
+import { RawUser, User } from "../types";
 import {
   addUsers,
   DB_NAME,
@@ -31,17 +31,31 @@ const UserTable = () => {
     const fetchAndStoreUsers = async () => {
       try {
         const storedUsers = await getAllUsers();
+
         if (storedUsers.length > 0) {
           // Load from IndexedDB
           setUsersData(storedUsers);
         } else {
-          const response = await axios.get(MOCKY_URL);
-          const data = response.data;
+          const response = await axios.get<RawUser[]>(MOCKY_URL);
 
-          if (Array.isArray(data)) {
+          const data: RawUser[] = response.data;
+
+          const usersWithIds: User[] = data.map(
+            (user: RawUser, index: number) => ({
+              id: index + 1,
+              ...user,
+            })
+          );
+
+          if (Array.isArray(usersWithIds)) {
+            
+            const validUsers = usersWithIds.filter(
+              (user) => typeof user.id === "number"
+            );
+
             // Fetched from API and saving to IndexedDB
-            await addUsers(data); // store all 500 users
-            setUsersData(data);
+            await addUsers(validUsers); // store all 500 users
+            setUsersData(validUsers);
           } else {
             // Data from API is not an array
             console.log(MOCKY_URL);

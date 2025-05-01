@@ -41,3 +41,5 @@ export type User =  {
     instagram: string;
     guarantors: Array<Guarantor>
   }
+
+  export type RawUser = Omit<User, 'id'>;
