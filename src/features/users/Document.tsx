@@ -1,8 +1,9 @@
-import React from 'react'
 
 const Document = () => {
   return (
-    <div>Document</div>
+    <div>
+      <h5>Documents</h5>
+    </div>
   )
 }
 

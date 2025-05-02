@@ -1,8 +1,9 @@
-import React from 'react'
 
 const Savings = () => {
   return (
-    <div>Savings</div>
+    <div>
+      <h5>Savings</h5>
+    </div>
   )
 }
 
