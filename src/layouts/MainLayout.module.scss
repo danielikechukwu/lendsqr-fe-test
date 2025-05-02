@@ -10,28 +10,11 @@
         height: 90vh;
     }
 
-    aside {
-        width: 15%;
-        background-color: white;
-        overflow-x: hidden;
-        overflow-y: auto;
-
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Hide scrollbar for IE and Edge */
-        -ms-overflow-style: none;
-
-        /* Hide scrollbar for Firefox */
-        scrollbar-width: none;
-    }
-
     main {
         flex: 1;
         background-color: rgb(245, 242, 242);
-        padding: 3% 2% 4% 2%;        overflow-x: hidden;
+        padding: 3% 2% 4% 2%;        
+        overflow-x: hidden;
         overflow-y: auto;
 
         /* Hide scrollbar for Chrome, Safari and Opera */

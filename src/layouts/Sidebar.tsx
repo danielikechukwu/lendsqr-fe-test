@@ -1,4 +1,8 @@
-import styles from "./SideNav.module.scss";
+import React, { useState } from "react";
+import styles from "./Sidebar.module.scss";
+import { NavLink } from "react-router-dom";
+import collapse from "../assets/icons/np-previous.svg";
+import expand from "../assets/icons/np-next.svg";
 import briefcase from "../assets/icons/briefcase.svg";
 import users from "../assets/icons/users.svg";
 import sack from "../assets/icons/sack.svg";
@@ -20,32 +24,31 @@ import chartBar from "../assets/icons/chart-bar.svg";
 import sliders from "../assets/icons/sliders.svg";
 import badgePercent from "../assets/icons/badge-percent.svg";
 import clipBoard from "../assets/icons/clipboard-list.svg";
-import { NavLink } from "react-router-dom";
 
-const Sidenav = () => {
+const Sidebar: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
-    <div className={`${styles.sideNavContainer}`}>
-      <div className={`${styles.sideNavDetails}`}>
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            paddingLeft: "15%",
-          }}
-        >
-          <img src={briefcase} alt="briefcase" width="16px" height="16px" />
-          <span>Switch Organisation</span>
+    <div
+      className={`${styles.sidebar} ${
+        collapsed ? styles.collapsed : styles.expanded
+      }`}
+    >
+      <div className={styles.switch}>
+        <img src={briefcase} alt="briefcase" className={styles.icon} />
+        {!collapsed && <span>Switch Organisation</span>}
+        {!collapsed && (
           <img
             src={next}
             alt="next"
-            width="16px"
-            height="16px"
             style={{ cursor: "pointer" }}
           />
-        </div>
+        )}
+      </div>
 
-        <div style={{ marginTop: "10%", marginBottom: "10%" }}>
+      <nav className={styles.nav}>
+
+        <div style={{ marginBottom: "10%" }}>
           <NavLink
             to="/dashboard"
             className={({ isActive }) =>
@@ -53,13 +56,13 @@ const Sidenav = () => {
             }
           >
             <div className={`${styles.linkContent}`}>
-              <img src={home} alt="home" />
-              <span>Dashboard</span>
+              <img src={home} alt="home" />              
+              {!collapsed && <span>Dashboard</span>}
             </div>
           </NavLink>
         </div>
 
-        <h6>CUSTOMERS</h6>
+        {!collapsed && <h6>CUSTOMERS</h6>}
 
         <div style={{ marginBottom: "2%" }}>
           <NavLink
@@ -70,7 +73,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={usersFriend} alt="users" />
-              <span>Users</span>
+              {!collapsed && <span>Users</span>}              
             </div>
           </NavLink>
         </div>
@@ -84,7 +87,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={users} alt="guarantors" />
-              <span>Guarantors</span>
+              {!collapsed && <span>Guarantors</span>}              
             </div>
           </NavLink>
         </div>
@@ -98,7 +101,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={sack} alt="loans" />
-              <span>Loans</span>
+              {!collapsed && <span>Loans</span>}              
             </div>
           </NavLink>
         </div>
@@ -112,7 +115,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={handshake} alt="decision-models" />
-              <span>Decision Models</span>
+              {!collapsed && <span>Decision Models</span>}              
             </div>
           </NavLink>
         </div>
@@ -126,7 +129,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={piggyBank} alt="savings" />
-              <span>Savings</span>
+              {!collapsed && <span>Savings</span>}               
             </div>
           </NavLink>
         </div>
@@ -140,7 +143,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={users} alt="loan-requests" />
-              <span>Loan Requests</span>
+              {!collapsed && <span>Loan Requests</span>}               
             </div>
           </NavLink>
         </div>
@@ -154,7 +157,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={userCheck} alt="whitelist" />
-              <span>Whitelist</span>
+              {!collapsed && <span>Whitelist</span>} 
             </div>
           </NavLink>
         </div>
@@ -168,12 +171,12 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={userTimes} alt="karma" />
-              <span>Karma</span>
+              {!collapsed && <span>Karma</span>}               
             </div>
           </NavLink>
         </div>
-
-        <h6>BUSINESSES</h6>
+        
+        {!collapsed && <h6>BUSINESSES</h6>}
 
         <div style={{ marginBottom: "2%" }}>
           <NavLink
@@ -184,7 +187,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={briefcase} alt="org." />
-              <span>Organization</span>
+              {!collapsed && <span>Organization</span>}               
             </div>
           </NavLink>
         </div>
@@ -198,7 +201,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={handHoldingSack} alt="loan" />
-              <span>Loan Products</span>
+              {!collapsed && <span>Loan Products</span>}                
             </div>
           </NavLink>
         </div>
@@ -212,7 +215,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={bank} alt="savings" />
-              <span>Savings Products</span>
+              {!collapsed && <span>Savings Products</span>}
             </div>
           </NavLink>
         </div>
@@ -226,7 +229,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={coinSolid} alt="fees" />
-              <span>Fees and Charges</span>
+              {!collapsed && <span>Fees and Charges</span>}              
             </div>
           </NavLink>
         </div>
@@ -240,7 +243,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={transaction} alt="transac." />
-              <span>Transactions</span>
+              {!collapsed && <span>Transactions</span>}
             </div>
           </NavLink>
         </div>
@@ -254,7 +257,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={galaxy} alt="services" />
-              <span>Services</span>
+              {!collapsed && <span>Services</span>}              
             </div>
           </NavLink>
         </div>
@@ -268,7 +271,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={userCog} alt="service" />
-              <span>Service Account</span>
+              {!collapsed && <span>Service Account</span>}
             </div>
           </NavLink>
         </div>
@@ -282,7 +285,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={scroll} alt="settlement" />
-              <span>Settlements</span>
+              {!collapsed && <span>Settlements</span>}              
             </div>
           </NavLink>
         </div>
@@ -296,12 +299,12 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={chartBar} alt="reports" />
-              <span>Reports</span>
+              {!collapsed && <span>Reports</span>} 
             </div>
           </NavLink>
         </div>
-
-        <h6>SETTINGS</h6>
+        
+        {!collapsed && <h6>SETTINGS</h6>}
 
         <div style={{ marginBottom: "2%" }}>
           <NavLink
@@ -312,7 +315,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={sliders} alt="preferences" />
-              <span>Preferences</span>
+              {!collapsed && <span>Preferences</span>}
             </div>
           </NavLink>
         </div>
@@ -326,7 +329,7 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={badgePercent} alt="pricing" />
-              <span>Fees and Pricing</span>
+              {!collapsed &&<span>Fees and Pricing</span>}              
             </div>
           </NavLink>
         </div>
@@ -340,13 +343,29 @@ const Sidenav = () => {
           >
             <div className={`${styles.linkContent}`}>
               <img src={clipBoard} alt="logs" />
-              <span>Audit Logs</span>
+              {!collapsed && <span>Audit Logs</span>}              
             </div>
           </NavLink>
         </div>
-      </div>
+
+      </nav>
+
+      {/* Button for expansion */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className={styles.toggleButton}
+      >
+        {collapsed ? (
+          <img src={expand} width={20} height={20} alt="collapse" />
+        ) : (
+          <img src={collapse} width={20} height={20} alt="collapse" />
+        )}
+
+        {!collapsed && <span className={`${styles.collapse}`}>Collapse</span>}
+      </button>
+      
     </div>
   );
 };
 
-export default Sidenav;
+export default Sidebar;

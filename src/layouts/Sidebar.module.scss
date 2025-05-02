@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+$font-family-primary: 'Work Sans', sans-serif;
+
+.sidebar {
+  background-color: white;
+  height: 90vh;
+  transition: width 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15%;
+
+  .switch {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-left: 15%;
+    margin-bottom: 10%;
+  }
+
+  span {
+    color: rgb(43, 66, 112);
+    font-family: $font-family-primary;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.expanded {
+  width: 250px;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .navLink {
+    display: block;
+    text-decoration: none;
+    padding: 4% 0% 4% 14%;
+    border-left: 3px solid transparent;
+
+    .linkContent {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        color: rgb(43, 66, 112);
+        font-family: $font-family-primary;
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .activeNavLink {
+    display: block;
+    text-decoration: none;
+    padding: 4% 0% 4% 14%;
+    border-left: 3px solid rgba(57, 205, 204, 1);
+    background-color: rgb(227, 242, 242);
+
+    .linkContent {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        color: rgba(33, 63, 125, 1);
+        font-family: $font-family-primary;
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.collapsed {
+  width: 60px;
+  display: flex;
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navLink {
+    display: block;
+    text-decoration: none;
+    padding: 4% 0% 4% 14%;
+    border-left: 3px solid transparent;
+    margin-top: 15%;
+    margin-top: 15%;
+    height: 42px;
+    display: flex;
+    align-items: center;
+  }
+
+  .activeNavLink {
+    display: block;
+    text-decoration: none;
+    padding: 4% 0% 4% 14%;
+    border-left: 3px solid rgba(57, 205, 204, 1);
+    background-color: rgb(227, 242, 242);
+    margin-top: 15%;
+    margin-top: 15%;
+    height: 42px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.toggleButton {
+  background: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  border: none;
+  margin-bottom: 2%;
+
+  .collapse {
+    color: rgba(84, 95, 125, 1);
+    font-family: $font-family-primary;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+}
+
+.nav {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE and Edge */
+  -ms-overflow-style: none;
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+
+
+  h6 {
+    color: rgba(84, 95, 125, 1);
+    font-family: $font-family-primary;
+    font-size: 10px;
+    font-weight: 500;
+    padding-left: 15%;
+  }
+
+}

@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
-import Sidenav from "./SideNav";
 import Navbar from "./Navbar";
 import styles from './MainLayout.module.scss';
+import Sidebar from "./Sidebar";
 
-const MainLayout = () => {  
+const MainLayout: React.FC = () => {  
 
   return (
     <div className={`${styles.layoutContainer}`}>
@@ -13,7 +13,7 @@ const MainLayout = () => {
 
       <section>
         <aside>
-          <Sidenav />
+          <Sidebar />
         </aside>
 
         <main>

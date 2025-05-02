@@ -1,6 +1,6 @@
 import styles from './FilterComponent.module.scss'
 
-const FilterComponent = () => {
+const FilterComponent: React.FC = () => {
   return (
     <div>FilterComponent</div>
   )

@@ -119,7 +119,7 @@ const Pagination: React.FC<PaginationProps> = ({
               <button
                 onClick={() => handlePageChange(page)}
                 className={`${styles.paginationButton} ${
-                  currentPage === page ? "active" : ""
+                  currentPage === page ? styles.active : ""
                 }`}
               >
                 {page}
